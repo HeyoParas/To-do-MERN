@@ -37,7 +37,7 @@ app.post('/api/tasks/todo', async (req, res) => {
       return res.status(201).json({ message: 'Task added to todos successfully!' });
     }
 
-    taskDocument.todo.push({ username, taskTitle, associated, progress, assignDate });
+    taskDocument.todo.unshift({ username, taskTitle, associated, progress, assignDate });
     await taskDocument.save();
 
     res.status(201).json({ message: 'Task added to todos successfully!' });
@@ -90,7 +90,7 @@ app.post('/api/tasks/done', async (req, res) => {
       return res.status(201).json({ message: 'Task added to inprogress successfully!' });
     }
 
-    taskDocument.done.push({username, taskTitle, associated, progress, assignDate });
+    taskDocument.done.unshift({username, taskTitle, associated, progress, assignDate });
     await taskDocument.save();
 
     res.status(201).json({ message: 'Task added to done successfully!' });
@@ -126,20 +126,15 @@ app.delete('/api/tasks/:id', async (req, res) => {
   const taskId = req.params.id;
   console.log(taskId);
   try {
-   
     const taskList = await TaskList.findOne();
-    console.log(taskList)
+    console.log(taskList);
     if (!taskList) {
       return res.status(404).json({ message: 'Task list not found!' });
     }
 
-    // let todo = taskList.todo;
-    // let inProgress = taskList.inProgress;
-    // let done = taskList.done;
-    // console.log("todo---- :", todo)
-    // console.log("inprogress ----:", inProgress)
-    // console.log("done---- :", done)
-
+    let todo = taskList.todo;
+    let inProgress = taskList.inProgress;
+    let done = taskList.done;
 
     taskList.todo = todo.filter(task => task._id.toString() !== taskId);
     taskList.inProgress = inProgress.filter(task => task._id.toString() !== taskId);
@@ -154,6 +149,43 @@ app.delete('/api/tasks/:id', async (req, res) => {
   }
 });
 
+// Update a task by ID patch
+app.patch('/api/update/tasks/:id', async (req, res) => {
+  const taskId = req.params.id;
+  const { taskTitle, associated, progress } = req.body;
+
+  try {
+    const taskList = await TaskList.findOne();
+    if (!taskList) {
+      return res.status(404).json({ message: 'Task list not found!' });
+    }
+
+    const allKeys = [taskList.todo, taskList.inProgress, taskList.done];
+    // console.log("all keys:", allKeys);
+    const task = allKeys.forEach(item =>
+      {
+        // console.log("this task",item);
+        let index = item.findIndex(task => 
+          {
+           if( task._id.toString() === taskId )
+           {
+            task.taskTitle = taskTitle;
+            task.associated = associated;
+            task.progress = progress;
+           }
+          });
+
+      });
+    // console.log("ye rha wo:",task);
+      //  console.log("all keys:", allKeys);
+    await taskList.save();
+
+    res.json({ message: 'Task updated successfully.', taskList });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while updating the task.' });
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
