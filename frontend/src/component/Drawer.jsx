@@ -21,11 +21,7 @@ function Drawer({ setWidth, mode, setMode }) {
     setWidth(!isOpen ? "20%" : "0%"); 
   };
   
-  const handleExit = () => {
-    console.log("exit clicked")
-    window.close();
-  }
-
+ 
   const toggleLightMode = () => {
     setMode(true);
   };
@@ -67,7 +63,7 @@ function Drawer({ setWidth, mode, setMode }) {
           </button>
         </div>
         <div className="mt-[300px] gap-5 space-y-4 flex flex-col items-center ">
-        <button className="w-8 h-8 rounded-full p-1 hover:bg-slate-800" onClick={handleExit}>
+        <button className="w-8 h-8 rounded-full p-1 hover:bg-slate-800">
             <img src={exit} />
           </button>
         </div>

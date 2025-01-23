@@ -25,7 +25,7 @@ const Navbar = ({mode}) => {
       </div>
       <div className='flex items-center mr-8 p-2 space-x-5'>
         <div className='hover:cursor-pointer font-bold'><button>Filter</button></div>
-        <div class='hover:cursor-pointer'><button>Sort</button></div>
+        <div className='hover:cursor-pointer'><button>Sort</button></div>
         <div className='hover:cursor-pointer'><img src={more} alt="more" /></div>
         <div className='hover:cursor-pointer'><button className='rounded-full bg-black text-white p-2'>New template</button></div>
       </div>

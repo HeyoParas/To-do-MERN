@@ -5,11 +5,11 @@ import TodoDialogue from "../antd/todoDialogue";
 import '../index.css';
 
 const Todo = ({ mode, data }) => {
-  console.log("Data received:", data);
+  //console.log("Data received:", data);
 
   const todos = data?.todo || [];
 
-  console.log("Extracted todos:", todos);
+  //console.log("Extracted todos:", todos);
 
   return (
     <div className='flex flex-col h-full border-2 border-dashed border-black-300 rounded-lg'>

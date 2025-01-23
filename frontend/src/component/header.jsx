@@ -22,7 +22,11 @@ const Header = ({mode}) => {
           <div className='w-8'><button className='hover:bg-slate-600 rounded-full w-8 h-8 p-1'><img src={search} alt="search" /></button></div>
           <div className='w-8'><button className='hover:bg-slate-600 rounded-full w-8 h-8 p-1'><img src={notifications} alt="notification" /></button></div>
           <div className='w-8'><button className='hover:bg-slate-600 rounded-full w-8 h-8 p-1'><img src={icons} alt="calendar" /></button></div>
-          <div className='w-8'><button className='hover:bg-slate-600 rounded-full'><img src={image} alt="user" className='rounded-full' /></button></div>
+          <div className='w-8'><button className='hover:bg-slate-600 rounded-full '
+                  style={{
+                    filter: mode ? "none" : "invert(1) brightness(0.8)",
+                  }}
+                  ><img src={image} alt="user" className='rounded-full' /></button></div>
         </div>
       </div>
     </div>

@@ -4,15 +4,17 @@ import more from '../assets/More.svg';
 import hamburger from '../assets/hamburger.svg';
 import comment from '../assets/comment.svg';
 import link from '../assets/link.svg';
+import edit from '../assets/edit.svg';
 import DeletePopUp from '../antd/deletePopUp';
 import { AuthContext } from '../AuthContext/authcontext';
 import axios from 'axios';
+import EditDialogue from '../antd/editDialogue';
 
 import '../index.css';
 import { message, Popconfirm } from 'antd';
 
 const TodoContent = ({ mode, data }) => {
-  console.log("data in todocontent",data);
+  // console.log("data in todocontent",data);
 
   formatAssignDate(data);
   
@@ -53,7 +55,9 @@ const TodoContent = ({ mode, data }) => {
             {data?.associated}
           </div>
         </div>
-        <div>
+        <div className='flex items-center gap-x-4'>
+        <EditDialogue mode={mode} id={data?._id}/>
+
           <Popconfirm
             title="Are you sure you want to delete this task?"
             open={deleteVisible}
