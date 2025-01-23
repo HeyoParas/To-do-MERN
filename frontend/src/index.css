@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  progress.rounded-progress {
+    appearance: none; /* Reset default styles */
+    width: 100%;
+    height: 8px; /* Adjust the height as needed */
+    border-radius: 10px; /* Makes it rounded */
+    overflow: hidden;
+  }
+  
+  /* Style the progress bar's value */
+  progress.rounded-progress::-webkit-progress-bar {
+    background-color: #e0e0e0; /* Background color */
+    border-radius: 10px; /* Ensures smooth rounding */
+  }
+  
+  progress.rounded-progress::-webkit-progress-value {
+    background-color:#ffb755; /* Progress color */
+    border-radius: 10px; /* Ensures smooth rounding */
+  }
+  
+  progress.rounded-progress::-moz-progress-bar {
+    background-color: #4caf50; /* Progress color for Firefox */
+    border-radius: 10px; /* Ensures smooth rounding */
+  }
+  .hide-scrollbar {
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For IE and Edge */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
