@@ -88,7 +88,27 @@ const TodoContent = ({ mode, data }) => {
           <div className='text-sm font-bold'>{data?.progress}/100</div>
         </div>
         <div className='flex items-center justify-center w-full'>
-          <progress className='rounded-progress' value={data?.progress} max="100" style={{ width: '90%' }}></progress>
+          <div
+            className="progress-bar-wrapper"
+            style={{
+              width: '90%',
+              height: '7px',
+              borderRadius: '10px',
+              backgroundColor: '#e0e0e0', 
+              overflow: 'hidden',
+              position: 'relative'
+            }}
+          >
+            <div
+              className="progress-bar"
+              style={{
+                width: `${data?.progress}%`,
+                height: '100%',
+                borderRadius: '10px',
+                backgroundColor: data?.progress === 100 ? '#78d700' : data?.progress <= 30 ? '#ff7979' : '#ffa048'
+              }}
+            ></div>
+          </div>
         </div>
       </div>
       <div className='flex items-center justify-between'>
@@ -117,3 +137,4 @@ const TodoContent = ({ mode, data }) => {
 };
 
 export default TodoContent;
+

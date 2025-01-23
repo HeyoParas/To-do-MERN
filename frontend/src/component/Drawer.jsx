@@ -11,6 +11,7 @@ import DropDown from '../antd/dropdown';
 import add_view from '../assets/add_view.svg';
 import light from "../assets/light.svg";
 import dark from "../assets/dark.svg";
+import exit from "../assets/exit.svg";
 
 function Drawer({ setWidth, mode, setMode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,11 @@ function Drawer({ setWidth, mode, setMode }) {
     setIsOpen(!isOpen);
     setWidth(!isOpen ? "20%" : "0%"); 
   };
+  
+  const handleExit = () => {
+    console.log("exit clicked")
+    window.close();
+  }
 
   const toggleLightMode = () => {
     setMode(true);
@@ -58,6 +64,11 @@ function Drawer({ setWidth, mode, setMode }) {
           </button>
           <button className="w-8 h-8 rounded-full p-1 hover:bg-slate-800">
             <img src={filter} />
+          </button>
+        </div>
+        <div className="mt-[300px] gap-5 space-y-4 flex flex-col items-center ">
+        <button className="w-8 h-8 rounded-full p-1 hover:bg-slate-800" onClick={handleExit}>
+            <img src={exit} />
           </button>
         </div>
       </div>
