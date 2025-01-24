@@ -113,7 +113,7 @@ const dropdown = ({mode}) => {
     color: mode ? "#000000" : "#ffffff", 
   }}
   defaultSelectedKeys={['1']}
-  defaultOpenKeys={['sub3']}
+  defaultOpenKeys={['']}
   mode="inline" 
   items={items}
 />

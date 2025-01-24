@@ -14,7 +14,7 @@ import dark from "../assets/dark.svg";
 import exit from "../assets/exit.svg";
 
 function Drawer({ setWidth, mode, setMode }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
@@ -71,7 +71,7 @@ function Drawer({ setWidth, mode, setMode }) {
 
       {isOpen && (
         <div
-          className="absolute top-0 h-screen w-[20%]  overflow-hidden"
+          className="absolute top-0 h-screen w-[20%]  overflow-hidden "
           style={{
             left: "4rem",
             background: mode ? "#ffffff" : "#222327",
@@ -89,7 +89,7 @@ function Drawer({ setWidth, mode, setMode }) {
           <div className="h-[calc(95vh-80px)] overflow-y-auto">
             <DropDown mode={mode} />
           </div>
-          <div className="flex justify-around items-center p-1 m-1 ml-[15%] w-[70%]">
+          <div className="flex justify-around items-center ml-[15%] w-[70%]">
             <button
               onClick={toggleLightMode}
               className="p-1 flex justify-evenly items-center rounded-full bg-slate-300 w-[40%] hover:bg-slate-500 text-black"

@@ -104,7 +104,9 @@ const TodoDialogue = ({ mode, type }) => {
             <div className="flex flex-col">
               <label className="text-sm font-medium">Progress (%)</label>
               <input
-                {...register('progress', { valueAsNumber: true })}
+                {...register('progress', { valueAsNumber: true,
+                  validate: value =>(value >= 0 && value <= 100)  || 'Progress cannot exceed 100%' 
+                 })}
                 type="number"
                 placeholder="Enter progress percentage"
                 className="border rounded p-2"
