@@ -5,7 +5,7 @@ const SkeletonBoard = () => {
     <div className="flex bg-[#2a2b2f] text-white min-h-screen">
       {/* Navigation Bar */}
       <nav className="w-16 bg-[#1c1d22] p-4 flex flex-col items-center">
-      <div className="h-10 w-10 bg-gray-700 rounded-full mb-16 mt-7 animate-pulse"></div>
+      <div className="h-10 w-10 bg-gray-700 rounded-full mb-[75px] mt-7 animate-pulse"></div>
         {Array.from({ length: 6 }).map((_, index) => (
           <div
             key={index}
@@ -36,7 +36,7 @@ const SkeletonBoard = () => {
       {/* Main Content */}
       <main className="flex-1 p-6">
         {/* Header */}
-        <header className="flex justify-between items-center mb-8">
+        <header className="flex justify-between items-center mb-6">
           <div className="h-8 bg-gray-600 rounded w-1/3"></div>
           <div className="flex gap-4">
             <div className="h-8 w-8 bg-gray-600 rounded-full"></div>
@@ -47,7 +47,7 @@ const SkeletonBoard = () => {
         </header>
 
         {/* Filter and Buttons */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-4">
           <div className="flex gap-10">
           <div className="h-8 bg-gray-600 rounded w-[150px]"></div>
           <div className="h-8 bg-gray-600 rounded w-[150px]"></div>
@@ -59,6 +59,7 @@ const SkeletonBoard = () => {
             <div className="h-8 w-32 bg-gray-600 rounded-full"></div>
           </div>
         </div>
+        <hr className="border-gray-600 mb-4"/>
 
         {/* Columns */}
         <div className="flex gap-4">

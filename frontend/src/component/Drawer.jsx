@@ -82,7 +82,10 @@ function Drawer({ setWidth, mode, setMode }) {
             <h1 className="text-2xl font-bold p-2">Project</h1>
             <div className="mt-4 w-8">
               <button className="w-10 h-5">
-                <img src={add_view} alt="Add" />
+                <img src={add_view} alt="Add"         
+                style={{
+          filter: mode ? "none" : "invert(1) brightness(0.8)",
+        }} />
               </button>
             </div>
           </div>

@@ -7,7 +7,12 @@ import { message } from 'antd';
 import edit from '../assets/edit.svg';
 
 const editDialogue = ({ mode, id }) => {
-  const { register, handleSubmit, reset } = useForm();
+    const {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors },
+    } = useForm();
   const { data, setRefetch } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskTitle, setTaskTitle] = useState('');
@@ -71,39 +76,57 @@ const editDialogue = ({ mode, id }) => {
       >
         <div className="p-4">
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit(handleOk)}>
+            {/* taskTitle*/}
             <div className="flex flex-col">
               <label className="text-sm font-medium">Task Title</label>
               <input
-                {...register('taskTitle', { required: true })}
+                {...register('taskTitle', { required: 'Task Title is required',
+                  validate: value => value.trim()!== '' || 'Task Title cannot be blank.',
+                 })}
                 type="text"
                 placeholder="Enter task title"
                 value={taskTitle}
                 onChange={(e) => setTaskTitle(e.target.value)}
-                className="border rounded p-2"
+                className={`border rounded p-2 ${errors.taskTitle ? 'border-red-500' : ''}`}
               />
+                            {errors.taskTitle && (
+                              <span className="text-red-500 text-xs">{errors.taskTitle.message}</span>
+                            )}
             </div>
+            {/* associated */}
             <div className="flex flex-col">
               <label className="text-sm font-medium">Associate With</label>
               <textarea
-                {...register('associated')}
+                {...register('associated',{
+                  required: 'Task Association is required.',
+                  validate: value => value.trim()!== '' || 'Association cannot be blank.',
+ 
+                })}
                 placeholder="Enter task Association"
                 value={associated}
                 onChange={(e) => setAssociated(e.target.value)}
-                className="border rounded p-2"
+                className={`border rounded p-2 ${errors.associated ? 'border-red-500' : ''}`}
               />
+                            {errors.associated && (
+                              <span className="text-red-500 text-xs">{errors.associated.message}</span>
+                            )}
             </div>
+            {/* Progress */}
             <div className="flex flex-col">
               <label className="text-sm font-medium">Progress (%)</label>
               <input
                 {...register('progress', { valueAsNumber: true,
-                  validate: value =>(value >= 0 && value <= 100)  || 'Progress cannot exceed 100%' 
+                  validate: value =>(value >= 0 && value <= 100)  || 'Progress must be between 0% and 100%.' 
                  })}
                 type="number"
                 placeholder="Enter progress percentage"
                 value={progress}
                 onChange={(e) => setProgress(e.target.value)}
-                className="border rounded p-2"
-              />
+                className={`border rounded p-2 ${errors.progress ? 'border-red-500' : ''}`}
+                />
+                              {errors.progress && (
+                                <span className="text-red-500 text-xs">{errors.progress.message}</span>
+                              )}
             </div>
           </form>
         </div>
